@@ -40,7 +40,6 @@ int linenum=1;
 \'.*\'  {yylval.string = strdup(yytext);return STRING;}
 \n	{linenum++;}
 [ \t]+
-("#".*) 
 . 
 
 %%

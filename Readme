@@ -1,0 +1,3 @@
+To Compile Program:
+
+	make && ./BashToPerl input.sh output.pl
