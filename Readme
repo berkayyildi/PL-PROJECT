@@ -1,3 +1,16 @@
-To Compile Program:
-
-	make && ./BashToPerl input.sh output.pl
+**************************************************************
+*     CSE 351 - Programming Languages Project (2018)         *
+*------------------------------------------------------------*
+*                                                            *
+* To Compile and Run Program for single input:               *
+*                                                            *
+*	~# make && ./BashToPerl input.sh output.pl           *
+*                                                            *
+* To Run Multiple Tests exampleinputshellscriptfiles/ :      *
+*                                                            *
+*	~# python test.py                                    * 
+*                                                            *
+*------------------------------------------------------------*
+*-------------------------------------------- Berkay YILDIZ--*
+*----------------------------------------------20150702058---*
+**************************************************************

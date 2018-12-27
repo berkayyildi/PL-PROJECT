@@ -15,7 +15,7 @@ int up_num = 0;
 %union{int number; char *string;}
 %token <string> INTEGER VARIABLE STRING IDENT DSTRING COMMENTLINE SHELLPREDIRECTIVE 
 %type <string> program statements statement variable_body operator compare_operator expr if_blocks elseif_statement assignment  printables comparison shell_command print_statement
-%token ECHOFUNC RW_WHILE RW_IF RW_ELIF RW_FI RW_ELSE RW_THEN DOLLAR ASSIGNOP PLUSOP MULTOP DIVOP MINUSOP OPENP CLOSEP OPENCURLY CLOSEDCURLY OPENBRACKET CLOSEDBRACKET EQUAL NOTEQUAL GREATER GREATEQ LESS LESSEQ
+%token ECHOFUNC RW_WHILE RW_IF RW_ELIF RW_FI RW_ELSE RW_THEN DOLLAR ASSIGNOP PLUSOP MULTOP DIVOP MINUSOP OPENP CLOSEP OPENCURLY CLOSEDCURLY OPENBRACKET CLOSEDBRACKET EQUAL NOTEQUAL GREATER GREATEQ LESS LESSEQ SPACE RW_DO RW_DONE
 %%
 
 program :
@@ -49,6 +49,13 @@ statement:
 	SHELLPREDIRECTIVE	{ $$ = "\n"; }
 	|
 	COMMENTLINE  		{ $$ = "\n"; }
+	|
+	RW_WHILE OPENBRACKET comparison CLOSEDBRACKET RW_DO statements RW_DONE{
+		sprintf(up_temp[up_num], "while (%s)\n{\n%s}\n",$3, $6);
+		$$=up_temp[up_num];
+		up_num++;
+		
+	}
 	;
 
 if_blocks:

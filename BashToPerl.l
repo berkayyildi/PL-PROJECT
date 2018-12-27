@@ -4,7 +4,7 @@ letter	[A-Za-z]
 #include <stdio.h>
 #include <string.h>
 #include "y.tab.h"
-int linenum=1;
+int linenum=0;
 %}
 %%
 "#!/bin/sh" return SHELLPREDIRECTIVE;
@@ -16,6 +16,8 @@ int linenum=1;
 "fi" 	return RW_FI;
 "else" 	return RW_ELSE;
 "then" 	return RW_THEN;
+"do" 	return RW_DO;
+"done" 	return RW_DONE;
 {letter}({letter}|{digit})*	{yylval.string = strdup(yytext);return IDENT;}
 [0-9]+				{yylval.string = strdup(yytext);return INTEGER;}
 "$"	return DOLLAR;
@@ -28,8 +30,8 @@ int linenum=1;
 ")"	return CLOSEP;
 "{"	return OPENCURLY;
 "}"	return CLOSEDCURLY;
-"["	return OPENBRACKET;
-"]"	return CLOSEDBRACKET;
+"[ "	return OPENBRACKET;
+" ]"	return CLOSEDBRACKET;
 "-eq"	return EQUAL;
 "-ne"	return NOTEQUAL;
 "-gt"	return GREATER;

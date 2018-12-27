@@ -1,7 +1,9 @@
 import os
 import glob  
 
-os.system('make');				#Install App
+os.system('rm BashToPerl');				#Remove App
+os.system('rm tests/*');				#Remove Old Files
+os.system('make');					#Install App
 
 path = './exampleinputshellscriptfiles/*.sh'   	#Get file list
 files=glob.glob(path)   
